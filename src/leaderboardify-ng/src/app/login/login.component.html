@@ -1,0 +1,12 @@
+<form class="form-inline navbar-nav nav float-xs-right" *ngIf="this.identityInfo.isAuthenticated" action="/account/logoff"
+  method="post" id="logoutForm" #logoutForm>
+  
+  <a class="nav-item nav-link" href="Manage" title="Manage">Hello {{this.identityInfo.authenticatedUserName}}</a>
+
+  <button type="submit" class="nav-item btn btn-link nav-link" (click)="logoutForm.submit()">Log off</button>
+</form>
+
+<div class="nav navbar-nav float-xs-right" *ngIf="!this.identityInfo.isAuthenticated">
+  <a class="nav-item nav-link" href="/account/register">Register</a>
+  <a class="nav-item nav-link" href="/account/login">Log in</a>
+</div>

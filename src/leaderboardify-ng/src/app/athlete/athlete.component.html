@@ -1,0 +1,80 @@
+<div>
+  <div [ngBusy]="[busy, busyEntries]"></div>
+
+  <div class="card">
+    <div class="card-block">
+      <div class="row">
+        <h4 class="card-title">
+          Athlete: {{athletePerf.firstName}} {{athletePerf.lastName}} - Grand Total: {{formatNumber(athletePerf.grandTotal)}} meters
+        </h4>
+        <!--<div class="col-md-3">
+                    <h4 class="card-title">Athlete: {{athletePerf.firstName}} {{athletePerf.lastName}}</h4>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary float-left" (click)="setTargets()">Set Performance Targets</button>
+                </div>-->
+      </div>
+      <div class="row">
+        <button type="button" *ngIf="editable" class="btn btn-primary btn-sm float-left" (click)="setTargets()">Set Performance Targets</button>
+      </div>
+    </div>
+    <div class="card-block">
+      <span class="card-text">Total Distance Rowed ({{formatTotal(athletePerf.rowTotal)}} / {{formatTarget(athletePerf.rowTarget)}} meters) - 
+        {{percentComplete(athletePerf.rowTotal, athletePerf.rowTarget)}}% complete</span>
+      <ngb-progressbar [type]="getProgressBarType('row')" [value]="athletePerf.rowTotal" [max]="athletePerf.rowTarget"></ngb-progressbar>
+    </div>
+    <div class="card-block">
+      <span class="card-text">Total Distance Run ({{formatTotal(athletePerf.runTotal)}} / {{formatTarget(athletePerf.runTarget)}} meters) -
+         {{percentComplete(athletePerf.runTotal, athletePerf.runTarget)}}% complete</span>
+      <ngb-progressbar [type]="getProgressBarType('run')" [value]="athletePerf.runTotal" [max]="athletePerf.runTarget"></ngb-progressbar>
+    </div>
+    <div class="card-block">
+      <span class="card-text">Total Distance Biked ({{formatTotal(athletePerf.bikeTotal)}} / {{formatTarget(athletePerf.bikeTarget)}} meters) -
+         {{percentComplete(athletePerf.bikeTotal, athletePerf.bikeTarget)}}% complete</span>
+      <ngb-progressbar [type]="getProgressBarType('bike')" [value]="athletePerf.bikeTotal" [max]="athletePerf.bikeTarget"></ngb-progressbar>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-block">
+      <div class="row">
+        <div class="col-md-3">
+          <h4 class="card-title">Workout Entries</h4>
+        </div>
+        <div class="col-md-3">
+          <button type="button" *ngIf="editable" class="btn btn-primary float-left" (click)="addNewEntry()">Add New Entry</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-block">
+
+      <div class="row">
+        <div class="col-md-5">
+
+          <table class="table table-striped table-hover table-sm">
+            <thead>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Distance</th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entry of workoutEntries">
+                <td>{{formatDate(entry.date)}}</td>
+                <td>{{entry.type}}</td>
+                <td>{{entry.distance.toLocaleString()}}</td>
+                <td>
+                  <button *ngIf="editable" class="btn btn-info" (click)="editEntry(entry)">Edit</button>
+                  <button *ngIf="editable" class="btn btn-danger" (click)="deleteEntry(entry)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

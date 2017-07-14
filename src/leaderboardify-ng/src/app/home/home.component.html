@@ -1,0 +1,27 @@
+<div>
+  <div [ngBusy]="busy"></div>
+  <h1>Leaderboard</h1>
+
+  <table class="table table-striped">
+    <!--<thead class="thead-inverse">-->
+    <thead>
+      <th>Rank</th>
+      <th>Athlete</th>
+      <th>Total (meters)</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let perf of performances; let i = index">
+        <td>{{i+1}}</td>
+        <td>
+          <a [routerLink]="['/athlete', perf.userId]">
+                        {{perf.firstName}} {{perf.lastName}}
+                    </a>
+        </td>
+        <td>{{perf.grandTotal}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

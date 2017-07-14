@@ -1,0 +1,23 @@
+<nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-primary">
+  <a class="navbar-brand" [routerLink]="['/']">Leaderboardify</a>
+
+  <div class="collapse navbar-collapse xnavbar-nav xnav">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-item nav-link" [routerLink]="['/']" [routerLinkActive]="['active']">
+            <span class='fa fa-home'></span> Home
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="this.identityInfo.isAuthenticated">
+        <a class="nav-item nav-link" [routerLink]="['/athlete', 'me']" [routerLinkActive]="['link-active']">
+            <span class='fa fa-user'></span> My Performance
+        </a>
+      </li>
+
+    </ul>
+
+    <login></login>
+
+  </div>
+</nav>
